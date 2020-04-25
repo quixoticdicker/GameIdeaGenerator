@@ -2,7 +2,7 @@ class RNG
 {
     constructor() {};
 
-randomColor = () =>
+randomColor()
 {
   var r = Math.floor(Math.random() * 255);
   var g = Math.floor(Math.random() * 255);
@@ -11,7 +11,7 @@ randomColor = () =>
   return color;
 };
 
-randomInt = (min, max) =>
+randomInt(min, max)
 {
     return Math.floor(min + Math.random() * (max - min));
 };
