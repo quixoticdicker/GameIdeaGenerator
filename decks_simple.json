@@ -1,0 +1,60 @@
+{
+  "decks":
+  [
+    {
+      "name":"genre",
+      "cards":
+      [
+        "RPG",
+        "strategy",
+        "puzzle",
+        "MMO",
+        "action",
+        "survival",
+        "platformer",
+        "simulation",
+        "shooter",
+        "racing",
+        "fighting",
+        "rhythm",
+        "city builder",
+        "god game"
+      ]
+    },
+    {
+      "name":"buzz",
+      "cards":
+      [
+        "2D"
+      ]
+    },
+    {
+      "name":"setting",
+      "cards":
+      [
+        "city"
+      ]
+    },
+    {
+      "name":"characters",
+      "cards":
+      [
+        "accountant"
+      ]
+    },
+    {
+      "name":"mcguffin descriptor",
+      "cards":
+      [
+        "jade"
+      ]
+    },
+    {
+      "name":"mcguffin"
+      "cards":
+      [
+        "statuette"
+      ]
+    }
+  ]
+}

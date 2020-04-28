@@ -1,9 +1,9 @@
 class Card {
-  constructor(x, y, fill, stroke) {
+  constructor(x, y, fill, stroke, deckName, cardName, width, height) {
     this.x = x;
     this.y = y;
-    this.width = 100;
-    this.height = 150;
+    this.width = width;
+    this.height = height;
     this.initialX = x;
     this.initialY = y;
 
@@ -12,18 +12,67 @@ class Card {
 
     this.fillColor = fill;
     this.strokeColor = stroke;
-  };
+    
+    this.faceDown = true;
+    
+    this.deckName = deckName;
+    this.cardName = cardName;
+  }
 
   draw(c)
   {
-    c.strokeStyle = this.strokeColor;
-    c.fillStyle = this.fillColor;
+    var cornerRound = 8;
+    if (this.faceDown)
+    {
+      c.fillStyle = this.strokeColor;
+      this.drawBorder(c, cornerRound);
+      c.fillStyle = this.fillColor;
+      this.drawFill(c, cornerRound);
+      c.fillStyle = this.strokeColor;
+      this.drawTextAtCenter(c, this.deckName);
+    }
+    else
+    {
+      c.fillStyle = this.fillColor;
+      this.drawBorder(c, cornerRound);
+      c.fillStyle = this.strokeColor;
+      this.drawFill(c, cornerRound);
+      c.fillStyle = this.fillColor;
+      this.drawTextAtCenter(c, this.cardName);
+    }
+  }
 
+  drawBorder(c, cornerRound)
+  {
     c.beginPath();
-    c.rect(this.x, this.y, this.width, this.height);
-    c.stroke();
-    c.fill();
-  };
+    var modWid = this.width - (2 * cornerRound);
+    var modHei = this.height - (2 * cornerRound);
+    var borderStr = `M ${this.x} ${this.y} m 0 ${cornerRound} a ${cornerRound} ${cornerRound} 0 0 1 ${cornerRound} -${cornerRound} h ${modWid} a ${cornerRound} ${cornerRound} 0 0 1 ${cornerRound} ${cornerRound} v ${modHei} a ${cornerRound} ${cornerRound} 0 0 1 -${cornerRound} ${cornerRound} h -${modWid} a ${cornerRound} ${cornerRound} 0 0 1 -${cornerRound} -${cornerRound} v -${modHei}`;
+    var path = new Path2D(borderStr);
+    c.fill(path);
+  }
+
+  drawFill(c, cornerRound)
+  {
+    var modWid = this.width - (2 * cornerRound);
+    var modHei = this.height - (2 * cornerRound);
+    var fillStr = `M ${this.x} ${this.y} m ${cornerRound} ${cornerRound} h ${modWid} v ${modHei} h -${modWid} v -${modHei}`;
+    var path = new Path2D(fillStr);
+    c.fill(path);
+  }
+  
+  drawTextAtCenter(c, text)
+  {
+    c.font = "25px Helvetica";
+    c.textAlign = "center";
+    c.fillText(text, this.x + (this.width / 2), this.y + (this.height / 2));
+  }
+
+  
+  flip()
+  {
+    this.faceDown = !this.faceDown;
+  }
   
   pointWithin(px, py)
   {
@@ -39,6 +88,7 @@ class Card {
       // record offset of mouse to card origin
       this.offsetX = this.x - px;
       this.offsetY = this.y - py;
+      this.faceDown = false;
   }
   
   drag(px, py)

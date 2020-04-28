@@ -8,6 +8,7 @@ randomColor()
   var g = Math.floor(Math.random() * 255);
   var b = Math.floor(Math.random() * 255);
   var color = 'rgba('+r+','+g+','+b+',1.0)';
+  console.log(color);
   return color;
 };
 

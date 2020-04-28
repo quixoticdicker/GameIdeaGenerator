@@ -9,10 +9,14 @@ cvs.height = window.innerHeight;
 deck = new Array();
 for (let idx = 0; idx < 5; idx++)
 {
-    var aCard = new Card(rand.randomInt(0, window.innerWidth),
-                         rand.randomInt(0, window.innerHeight),
+    var aCard = new Card(rand.randomInt(0, window.innerWidth - 157),
+                         rand.randomInt(0, window.innerHeight - 224),
                          rand.randomColor(),
-                         rand.randomColor());
+                         rand.randomColor(),
+                         "deck",
+                         "card",
+                         157,
+                         224);
     deck.push(aCard);
 }
 
@@ -64,6 +68,7 @@ window.addEventListener('mousedown', function (e)
     {
         debuglog("starting to drag");
         draggedCard.startDragging(mouse.x, mouse.y);
+        redraw();
     }
 });
 
