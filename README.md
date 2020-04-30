@@ -14,12 +14,12 @@ I created this thing to come up with game ideas, but it could be pretty easily m
 
 ## Future Work
 I consider this to be basically done, but there are a few things I might change or improve.
-1. Make the colors always readable.
+1. **Make the colors always readable.**
 The colors are currently random. I like it quite a bit as is, but sometimes you get unlucky and can barely read what's on the card. I made a small program in the past that measures the readability of colored text on a colored background, so maybe I'll keep the randomness and recycle some of that code.
-2. Scale the cards based on the screen size.
-Currently, the width and height of the cards is hard coded. This means that the cards are a great size for the screen that I developed this on, but even if I run it on my laptop screen, the cards are too big. This would be super easy to fix.
-3. Scale the text on the cards better.
+2. ~**Scale the cards based on the screen size.**
+Currently, the width and height of the cards is hard coded. This means that the cards are a great size for the screen that I developed this on, but even if I run it on my laptop screen, the cards are too big. This would be super easy to fix.~ **Added 4/30/2020**
+3. **Scale the text on the cards better.**
 Currently, the text is displayed at a specific size, and if the width of the text doesn't fit on the card, the size is shrinked. For the deck "mcguffin descriptor" the text could be broken into multiple lines rather than just shrinking the text size. I don't think this would be too hard to fix, I just don't really want to do it.
-4. Add more complex graphics to the cards.
+4. **Add more complex graphics to the cards.**
 Originally, I wanted each card to have custom vector graphics. I had ideas for most of the cards, but I found it a little difficult to translate those ideas to vector graphics and those vector graphics to a json file and that json file to a card on the screen. I might come back to this later, but I don't really think its needed right now. You can sort of see what I was thinking in the "decks.json" file.
 
