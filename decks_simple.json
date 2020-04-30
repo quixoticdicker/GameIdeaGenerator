@@ -1,4 +1,4 @@
-{
+var jsonDecks = {
   "decks":
   [
     {
@@ -25,35 +25,71 @@
       "name":"buzz",
       "cards":
       [
-        "2D"
+        "2D",
+        "3D",
+        "fast paced",
+        "relaxing"
       ]
     },
     {
       "name":"setting",
       "cards":
       [
-        "city"
+        "city",
+        "ocean liner",
+        "oil rig",
+        "circus"
       ]
     },
     {
       "name":"characters",
       "cards":
       [
-        "accountant"
+        "accountant",
+        "mage",
+        "escort",
+        "surgeon",
+        "senator",
+        "pilot",
+        "teacher",
+        "witch",
+        "bodyguard",
+        "DJ"
       ]
     },
     {
       "name":"mcguffin descriptor",
       "cards":
       [
-        "jade"
+        "jade",
+        "bloody",
+        "ancient",
+        "futuristic",
+        "broken",
+        "crying",
+        "esoteric",
+        "cursed",
+        "anachronistic",
+        "holy",
+        "rusted"
       ]
     },
     {
-      "name":"mcguffin"
+      "name":"mcguffin",
       "cards":
       [
-        "statuette"
+        "statuette",
+        "amulet",
+        "dagger",
+        "staff",
+        "sconse",
+        "altar",
+        "tome",
+        "banner",
+        "key",
+        "memory",
+        "child",
+        "grail"
       ]
     }
   ]

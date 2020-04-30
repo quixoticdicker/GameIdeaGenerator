@@ -1,24 +1,52 @@
 const cvs = document.querySelector('canvas');
 const c = cvs.getContext('2d');
 
+console.log(jsonDecks.decks[1].name);
+
 var rand = new RNG();
 
 cvs.width = window.innerWidth;
 cvs.height = window.innerHeight;
 
-deck = new Array();
-for (let idx = 0; idx < 5; idx++)
+var cardWidth = 157;
+var cardHeight = 224;
+var numDecks = jsonDecks.decks.length
+var deckSpacing = (cvs.width - numDecks * cardWidth) / (numDecks + 1);
+
+allCards = new Array();
+var deckIdx = 0;
+for (let deck of jsonDecks.decks)
 {
-    var aCard = new Card(rand.randomInt(0, window.innerWidth - 157),
-                         rand.randomInt(0, window.innerHeight - 224),
-                         rand.randomColor(),
-                         rand.randomColor(),
-                         "deck",
-                         "card",
-                         157,
-                         224);
-    deck.push(aCard);
+  var foregroundColor = rand.randomColor();
+  var backgroundColor = rand.randomColor();
+  var cardIdx = 0;
+  for (let card of deck.cards)
+  {
+    var aCard = new Card((deckIdx + 1) * deckSpacing + (deckIdx) * cardWidth,
+                         (cvs.height / 3) - (cardHeight / 2) - (cardIdx * 10),
+                         foregroundColor,
+                         backgroundColor,
+                         deck.name,
+                         card,
+                         cardWidth,
+                         cardHeight);
+    allCards.push(aCard);
+    cardIdx = cardIdx + 1;
+  }
+  deckIdx = deckIdx + 1;
 }
+//for (let idx = 0; idx < 5; idx++)
+//{
+//    var aCard = new Card(rand.randomInt(0, window.innerWidth - 157),
+//                         rand.randomInt(0, window.innerHeight - 224),
+//                         rand.randomColor(),
+//                         rand.randomColor(),
+//                         "deck",
+//                         "card",
+//                         157,
+//                         224);
+//    deck.push(aCard);
+//}
 
 redraw();
 
@@ -56,7 +84,7 @@ window.addEventListener('mousedown', function (e)
     // check if click is within card boundry
     sortDeck();
     debuglog("checking cards");
-    for (let card of deck)
+    for (let card of allCards)
     {
         if (card.pointWithin(mouse.x, mouse.y))
         {
@@ -83,7 +111,7 @@ function redraw()
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     sortDeck();
-    deck.forEach(function(card, idx, arr)
+    allCards.forEach(function(card, idx, arr)
     {
         card.draw(c);
     });
@@ -91,7 +119,7 @@ function redraw()
 
 function sortDeck()
 {
-    deck.sort(function(a, b)
+    allCards.sort(function(a, b)
     {
         // draw bottom to top, left to right
         var ydif = b.y - a.y;
@@ -108,5 +136,5 @@ function sortDeck()
 
 function debuglog(msg)
 {
-    console.log(msg);
+    //console.log(msg);
 }
