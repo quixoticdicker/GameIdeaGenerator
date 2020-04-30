@@ -1,5 +1,5 @@
 class Card {
-  constructor(x, y, fill, stroke, deckName, cardName, width, height) {
+  constructor(x, y, fill, stroke, deckName, cardName, width, height, c) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -12,16 +12,36 @@ class Card {
 
     this.fillColor = fill;
     this.strokeColor = stroke;
-    
+
     this.faceDown = true;
-    
+
     this.deckName = deckName;
     this.cardName = cardName;
+
+    this.cornerRound = 8;
+
+    var textSize = 25;
+    c.font = `${textSize}px Helvetica`;
+    while (c.measureText(deckName).width > this.width - (2 * this.cornerRound))
+    {
+      textSize = textSize - 1;
+      c.font = `${textSize}px Helvetica`;
+    }
+    this.deckTextSize = textSize;
+
+    textSize = 25;
+    c.font = `${textSize}px Helvetica`;
+    while (c.measureText(cardName).width > this.width - (2 * this.cornerRound))
+    {
+      textSize = textSize - 1;
+      c.font = `${textSize}px Helvetica`;
+    }
+    this.cardTextSize = textSize;
   }
 
   draw(c)
   {
-    var cornerRound = 8;
+    var cornerRound = this.cornerRound;
     if (this.faceDown)
     {
       c.fillStyle = this.strokeColor;
@@ -29,7 +49,7 @@ class Card {
       c.fillStyle = this.fillColor;
       this.drawFill(c, cornerRound);
       c.fillStyle = this.strokeColor;
-      this.drawTextAtCenter(c, this.deckName);
+      this.drawTextAtCenter(c, this.deckName, this.deckTextSize);
     }
     else
     {
@@ -38,7 +58,7 @@ class Card {
       c.fillStyle = this.strokeColor;
       this.drawFill(c, cornerRound);
       c.fillStyle = this.fillColor;
-      this.drawTextAtCenter(c, this.cardName);
+      this.drawTextAtCenter(c, this.cardName, this.cardTextSize);
     }
   }
 
@@ -61,9 +81,9 @@ class Card {
     c.fill(path);
   }
   
-  drawTextAtCenter(c, text)
+  drawTextAtCenter(c, text, size)
   {
-    c.font = "25px Helvetica";
+    c.font = `${size}px Helvetica`;
     c.textAlign = "center";
     c.fillText(text, this.x + (this.width / 2), this.y + (this.height / 2));
   }

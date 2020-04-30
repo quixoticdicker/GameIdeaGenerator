@@ -32,24 +32,13 @@ for (let deck of jsonDecks.decks)
                          deck.name,
                          card,
                          cardWidth,
-                         cardHeight);
+                         cardHeight,
+                         c);
     allCards.push(aCard);
     cardIdx = cardIdx + 1;
   }
   deckIdx = deckIdx + 1;
 }
-//for (let idx = 0; idx < 5; idx++)
-//{
-//    var aCard = new Card(rand.randomInt(0, window.innerWidth - 157),
-//                         rand.randomInt(0, window.innerHeight - 224),
-//                         rand.randomColor(),
-//                         rand.randomColor(),
-//                         "deck",
-//                         "card",
-//                         157,
-//                         224);
-//    deck.push(aCard);
-//}
 
 redraw();
 
