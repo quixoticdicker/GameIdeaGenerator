@@ -1,9 +1,10 @@
 class Card {
-  constructor(x, y, fill, stroke, deckName, cardName, width, height, c) {
+  constructor(x, y, fill, stroke, deckName, cardName, width, height, border, c) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
+    this.borderWidth = border;
     this.initialX = x;
     this.initialY = y;
 
@@ -18,11 +19,11 @@ class Card {
     this.deckName = deckName;
     this.cardName = cardName;
 
-    this.cornerRound = 8;
+    this.cornerRound = this.borderWidth;
 
     var textSize = 25;
     c.font = `${textSize}px Helvetica`;
-    while (c.measureText(deckName).width > this.width - (2 * this.cornerRound))
+    while (c.measureText(deckName).width > this.width - (2 * this.borderWidth))
     {
       textSize = textSize - 1;
       c.font = `${textSize}px Helvetica`;
@@ -31,7 +32,7 @@ class Card {
 
     textSize = 25;
     c.font = `${textSize}px Helvetica`;
-    while (c.measureText(cardName).width > this.width - (2 * this.cornerRound))
+    while (c.measureText(cardName).width > this.width - (2 * this.borderWidth))
     {
       textSize = textSize - 1;
       c.font = `${textSize}px Helvetica`;

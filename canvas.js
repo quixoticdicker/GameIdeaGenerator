@@ -8,9 +8,37 @@ var rand = new RNG();
 cvs.width = window.innerWidth;
 cvs.height = window.innerHeight;
 
+var cardInDeckOffset = 10;
+var minDeckSeparation = 10;
 var cardWidth = 157;
 var cardHeight = 224;
-var numDecks = jsonDecks.decks.length
+var cardBorderRatio = 8 / 224;
+var sizeRatio = cardWidth / cardHeight;
+var numDecks = jsonDecks.decks.length;
+var mostCardsInADeck = 0;
+for (let deck of jsonDecks.decks)
+{
+  if (deck.cards.length > mostCardsInADeck)
+  {
+    mostCardsInADeck = deck.cards.length;
+  }
+}
+var maxCardHeight = ((cvs.height / 2) - 2 * mostCardsInADeck + 2) / (1 + mostCardsInADeck * cardBorderRatio - cardBorderRatio);
+//(cvs.height / 2) - (mostCardsInADeck - 1) * cardInDeckOffset;
+var maxCardWidth = (cvs.width - (numDecks + 1) * minDeckSeparation) / numDecks;
+if (sizeRatio * maxCardHeight > maxCardWidth)
+{
+  cardWidth = maxCardWidth;
+  cardHeight = maxCardWidth / sizeRatio;
+}
+else
+{
+  cardHeight = maxCardHeight;
+  cardWidth = sizeRatio * maxCardHeight;
+}
+cardInDeckOffset = cardBorderRatio * cardHeight + 2;
+console.log(cardHeight);
+console.log(cardWidth);
 var deckSpacing = (cvs.width - numDecks * cardWidth) / (numDecks + 1);
 
 allCards = new Array();
@@ -26,13 +54,14 @@ for (let deck of jsonDecks.decks)
   for (let card of deck.cards)
   {
     var aCard = new Card((deckIdx + 1) * deckSpacing + (deckIdx) * cardWidth,
-                         (cvs.height / 3) - (cardHeight / 2) - (cardIdx * 10),
+                         (cvs.height / 2) - (cardHeight) - (cardIdx * cardInDeckOffset),
                          foregroundColor,
                          backgroundColor,
                          deck.name,
                          card,
                          cardWidth,
                          cardHeight,
+                         cardInDeckOffset - 2,
                          c);
     allCards.push(aCard);
     cardIdx = cardIdx + 1;
