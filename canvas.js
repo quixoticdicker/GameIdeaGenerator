@@ -20,6 +20,9 @@ for (let deck of jsonDecks.decks)
   var foregroundColor = rand.randomColor();
   var backgroundColor = rand.randomColor();
   var cardIdx = 0;
+
+  shuffleDeck(deck.cards);
+
   for (let card of deck.cards)
   {
     var aCard = new Card((deckIdx + 1) * deckSpacing + (deckIdx) * cardWidth,
@@ -132,6 +135,17 @@ function sortDeck()
             return ydif;
         }
     });
+};
+
+// using Fisher-Yates shuffle
+function shuffleDeck(array)
+{
+  for (let i = array.length - 1; i > 0; --i)
+  {
+    let j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
 };
 
 function debuglog(msg)

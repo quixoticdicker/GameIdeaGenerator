@@ -28,7 +28,28 @@ var jsonDecks = {
         "2D",
         "3D",
         "fast paced",
-        "relaxing"
+        "relaxing",
+        "violent",
+        "pixelated",
+        "online",
+        "multiplayer",
+        "co-op",
+        "competitive",
+        "streamable",
+        "micro-transactions",
+        "unlockables",
+        "text-based",
+        "story rich",
+        "turn-based",
+        "realtime",
+        "procedural",
+        "open-world",
+        "sandbox",
+        "rogue-like",
+        "souls-like",
+        "isometric",
+        "first person",
+        "third person"
       ]
     },
     {
@@ -38,7 +59,19 @@ var jsonDecks = {
         "city",
         "ocean liner",
         "oil rig",
-        "circus"
+        "circus",
+        "seweres",
+        "town fair",
+        "renaissance",
+        "feudal japan",
+        "kievan rus",
+        "castle",
+        "underground",
+        "mountain tops",
+        "pirate ship",
+        "kitchen",
+        "abstract void",
+        "inside someone"
       ]
     },
     {
